@@ -1,0 +1,21 @@
+CC = g++
+CCFLAG = -g -w
+
+proj5: main.o World.o Weather.o Decision.o Student.o Group.o 
+	$(CC) $(CCFLAG) -o proj5 main.o World.o Weather.o \
+        Decision.o Student.o Group.o
+main.o: main.C World.h
+	$(CC) $(CCFLAG) -c -o main.o main.C
+World.o: World.C World.h Group.h
+	$(CC) $(CCFLAG) -c -o World.o World.C
+Weather.o: Weather.C Weather.h
+	$(CC) $(CCFLAG) -c -o Weather.o Weather.C
+Decision.o: Decision.C Decision.h
+	$(CC) $(CCFLAG) -c -o Decision.o Decision.C
+Student.o: Student.C Student.h Decision.h
+	$(CC) $(CCFLAG) -c -o Student.o Student.C
+Group.o: Group.C Group.h Student.h
+	$(CC) $(CCFLAG) -c -o Group.o Group.C
+clean:
+	rm -rf proj5 *.o
+
